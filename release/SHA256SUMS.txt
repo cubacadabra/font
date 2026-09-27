@@ -1,4 +1,4 @@
 cc1533eb35e9fd022b55923829bcc3c209ac2819ea27ce18ccd5538782ef20d4  fonts/Cubacadabra-Regular.ttf
 47bbe0bd6d527cece163594bb9580b4b4ecdb230ca818952c9c5f3443ed769c9  fonts/Cubacadabra-Regular.woff2
 b532cf4799d1aeedde4ce2b1b21c68d7b318628fb6283eb01bb2edf1ddeb00d7  fonts/cubacadabra.css
-1a52e6edb2f477fec233e900066c10eb56b5dc7d2d33a15597a22eb5844ab14b  release/Cubacadabra-0.1.0.zip
+1dca65d3b40203c02738c5f3a3e592aecb8b6161c303b125f88e6c013c6ffd47  release/Cubacadabra-0.1.0.zip

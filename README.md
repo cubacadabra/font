@@ -135,8 +135,8 @@ For each release, increment both the archive version and OpenType version in
 `scripts/build.py`, update the release date and FontLog, then run the checks
 and inspect the font in the desktop/web apps you intend to support. Preserve
 old releases; changed bytes get a new version. The included package carries
-fonts, license/credits, specimens, source, and build instructions. This preview
-has been prepared locally and has not been uploaded.
+fonts, license/credits, specimens, source, and build instructions. The build
+prepares local artifacts; publishing a GitHub Release is a separate action.
 
 Google Fonts is a later, separate review path. Its
 [requirements](https://googlefonts.github.io/gf-guide/requirements.html)
