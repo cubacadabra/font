@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cubacadabra — font specimen</title>
+<link rel="stylesheet" href="../fonts/cubacadabra.css">
+<style>
+  :root { color-scheme: light; font-family: Arial, Helvetica, sans-serif; color: #171717; background: #fff; }
+  * { box-sizing: border-box; }
+  body { margin: 0; }
+  main { max-width: 1152px; margin: 0 auto; padding: 32px 24px 56px; }
+  header { display: flex; flex-wrap: wrap; gap: 16px 32px; align-items: baseline; justify-content: space-between; }
+  h1 { font-size: 24px; margin: 0; }
+  h2 { font-size: 18px; margin: 32px 0 16px; }
+  p { max-width: 70ch; font-size: 15px; line-height: 1.5; }
+  a { color: inherit; text-underline-offset: 3px; }
+  nav { display: flex; flex-wrap: wrap; gap: 8px 24px; }
+  nav a { display: inline-flex; align-items: center; min-height: 44px; }
+  label { display: block; font-size: 14px; margin-bottom: 8px; }
+  input[type=text] { display: block; width: 100%; max-width: 640px; min-height: 44px; padding: 10px 12px; font: inherit; border: 1px solid #777; border-radius: 3px; }
+  :focus-visible { outline: 2px solid #155ac4; outline-offset: 4px; }
+  .controls { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; margin-top: 12px; }
+  .controls label { display: flex; align-items: center; gap: 12px; margin: 0; min-height: 44px; }
+  input[type=range] { width: 160px; min-height: 44px; }
+  output { min-width: 5ch; font-variant-numeric: tabular-nums; }
+  .preview { overflow-x: auto; padding: 12px 4px; min-height: 120px; margin: 12px -4px 0; }
+  #sample { font-size: 96px; white-space: pre; margin: 0; max-width: none; width: max-content; padding: .02em; }
+  .note { color: #505050; font-size: 14px; }
+  #font-status { min-height: 21px; margin: 4px 0 0; }
+  .alphabet { display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 24px 16px; max-width: 1040px; }
+  figure { margin: 0; }
+  .letter { font-size: 96px; line-height: 1; display: block; padding: 2px; }
+  figcaption { font-size: 14px; padding-left: 2px; margin-top: 8px; }
+  .symbols { font-size: 32px; overflow-wrap: anywhere; line-height: 1.7; margin: 0; }
+  footer { margin-top: 32px; }
+  @media (max-width: 480px) { main { padding: 24px 20px 40px; } .alphabet { grid-template-columns: repeat(3, 1fr); gap: 24px 8px; } }
+</style>
+<main>
+  <header>
+    <h1>Cubacadabra</h1>
+    <nav aria-label="Font downloads">
+      <a href="../fonts/Cubacadabra-Regular.ttf" download>Download TTF</a>
+      <a href="../fonts/Cubacadabra-Regular.woff2" download>Download WOFF2</a>
+    </nav>
+  </header>
+  <p>A square alphabet with shared edges. Regular · version 0.1.0 preview.</p>
+  <label for="text">Try the font</label>
+  <input id="text" type="text" value="cubacadabra" autocomplete="off" spellcheck="false" maxlength="500">
+  <div class="controls">
+    <label for="size">Size <input id="size" type="range" min="32" max="160" value="96"> <output id="size-value" for="size">96 px</output></label>
+    <span class="note">Uppercase and lowercase use the same shapes.</span>
+  </div>
+  <div class="preview" tabindex="0" role="region" aria-label="Font preview; scroll horizontally for long text">
+    <p id="sample" class="cubacadabra">cubacadabra</p>
+  </div>
+  <p id="font-status" class="note" role="status">Loading font…</p>
+  <h2>Alphabet</h2>
+  <div class="alphabet" id="alphabet"></div>
+  <h2>Numbers &amp; punctuation</h2>
+  <p class="cubacadabra symbols">0123456789<br>! ? . , : ; ' " ( ) [ ] { } / \ @ # &amp; * + − =<br>“Quotes” ‘apostrophes’ – — … © ® ™ $ € £ ¥</p>
+  <p class="note">Conventional symbols are adapted from Arimo. Spaces and punctuation separate the boxes. <a href="characters.txt">Full character coverage</a>.</p>
+  <footer><p class="note">Use zero letter spacing and normal weight to keep the boxes connected. Best for short display text at 32 px and above. Licensed under the <a href="../OFL.txt">SIL Open Font License 1.1</a>.</p></footer>
+</main>
+<script>
+  const text = document.querySelector('#text');
+  const size = document.querySelector('#size');
+  const sample = document.querySelector('#sample');
+  const sizeValue = document.querySelector('#size-value');
+  const status = document.querySelector('#font-status');
+  function update() {
+    sample.textContent = text.value;
+    sample.style.fontSize = `${size.value}px`;
+    sizeValue.textContent = `${size.value} px`;
+  }
+  // Fit the initial word on narrow screens; users can then choose any size.
+  size.value = Math.min(96, Math.floor((document.querySelector('.preview').clientWidth - 8) / 8.25));
+  text.addEventListener('input', update);
+  size.addEventListener('input', update);
+  update();
+  for (const letter of 'ABCDEFGHIJKLMNOPQRSTUVWXYZ') {
+    const figure = document.createElement('figure');
+    const shape = document.createElement('span');
+    shape.className = 'letter cubacadabra';
+    shape.textContent = letter;
+    shape.setAttribute('aria-hidden', 'true');
+    const caption = document.createElement('figcaption');
+    caption.textContent = `${letter} / ${letter.toLowerCase()}`;
+    figure.append(shape, caption);
+    document.querySelector('#alphabet').append(figure);
+  }
+  document.fonts.load('96px Cubacadabra').then((fonts) => {
+    if (!fonts.length) throw new Error('Font unavailable');
+    status.textContent = '';
+  }).catch(() => {
+    status.textContent = 'The font could not load. Open this specimen through a local web server, or install the TTF.';
+  });
+</script>
+</html>
