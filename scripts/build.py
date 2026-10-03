@@ -24,12 +24,12 @@ MODULE = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(MODULE)
 ALPHABET = MODULE.ALPHABET
 
-VERSION = "0.1.0"
-FONT_VERSION = "0.100"
+VERSION = "0.1.1"
+FONT_VERSION = "0.101"
 UPM = 1000
 CELL = 750
 STROKE = 20
-TIMESTAMP = 3873312000  # 2026-09-27 00:00:00 UTC, seconds since 1904.
+TIMESTAMP = 3873744000  # 2026-10-02 00:00:00 UTC, seconds since 1904.
 VENDOR_SHA256 = "41b22bc8f0b51f932825d37bc55b5eb6ba67dfe599a626e4aff2b43b624f9f8c"
 EXTRA_CHARACTERS = "\u00a0¡¢£¤¥¦§©«¬®°±²³¶·¹»¼½¾¿×÷–—‘’‚“”„†‡•…‰‹›€™−≠≤≥′″"
 
@@ -227,7 +227,7 @@ def build_proofs(font):
 def package_release():
     # The archive is reproducible and includes everything needed to preview,
     # install, self-host, and rebuild without downloading the upstream font.
-    inputs = [ROOT / p for p in ("README.md", "FONTLOG.md", "OFL.txt", "requirements.txt")]
+    inputs = [ROOT / p for p in ("README.md", "FONTLOG.md", "OFL.txt", "LICENSE", "requirements.txt")]
     for directory in ("fonts", "sources", "scripts", "specimen"):
         inputs.extend(p for p in (ROOT / directory).rglob("*")
                       if p.is_file() and "__pycache__" not in p.parts and p.suffix != ".pyc")
@@ -242,7 +242,7 @@ def package_release():
     with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED) as output:
         for path in sorted(inputs):
             info = zipfile.ZipInfo(f"Cubacadabra-{VERSION}/{path.relative_to(ROOT)}",
-                                   (2026, 9, 27, 0, 0, 0))
+                                   (2026, 10, 2, 0, 0, 0))
             info.compress_type = zipfile.ZIP_DEFLATED
             info.external_attr = 0o100644 << 16
             output.writestr(info, path.read_bytes())

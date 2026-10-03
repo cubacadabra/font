@@ -87,11 +87,11 @@ def verify():
     for line in sums.read_text().splitlines():
         expected, relative = line.split("  ", 1)
         assert hashlib.sha256((ROOT / relative).read_bytes()).hexdigest() == expected
-    with zipfile.ZipFile(ROOT / "release/Cubacadabra-0.1.0.zip") as archive:
+    with zipfile.ZipFile(ROOT / "release/Cubacadabra-0.1.1.zip") as archive:
         assert archive.testzip() is None
         for path in ("fonts/Cubacadabra-Regular.ttf", "fonts/Cubacadabra-Regular.woff2",
-                     "OFL.txt", "specimen/index.html", "scripts/verify.py", "sources/alphabet.py"):
-            assert archive.read(f"Cubacadabra-0.1.0/{path}") == (ROOT / path).read_bytes()
+                     "OFL.txt", "LICENSE", "specimen/index.html", "scripts/verify.py", "sources/alphabet.py"):
+            assert archive.read(f"Cubacadabra-0.1.1/{path}") == (ROOT / path).read_bytes()
     print("PASS: 144 characters; 26 distinct letter designs; matching TTF/WOFF2; "
           "unclipped metrics; equal shared borders; release integrity")
 

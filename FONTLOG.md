@@ -1,5 +1,12 @@
 # Cubacadabra FontLog
 
+## Version 0.1.1 preview — 2026-10-02
+
+- Clarified GPL-3.0-or-later for the project-owned creation tools and alphabet
+  source while retaining SIL OFL 1.1 for distributed font software and Arimo.
+- Included the GPL license alongside OFL in the reproducible source archive.
+- Preserved the 0.1.0 archive. Glyph designs, coverage, and metrics are unchanged.
+
 ## Version 0.1.0 preview — 2026-09-27
 
 - Initial preview of the Cubacadabra Regular face, based on the supplied

@@ -2,7 +2,7 @@
 
 Cubacadabra is a decorative display font built from the square, edge-joining
 alphabet shown in the original `alpha.png` and `11.png` references. It is an
-early preview, version **0.1.0** (OpenType version **0.100**), with one Regular
+early preview, version **0.1.1** (OpenType version **0.101**), with one Regular
 face.
 
 Uppercase and lowercase Latin letters retain their normal text mappings but
@@ -22,6 +22,10 @@ best at 32 CSS pixels or larger. Keep words intact; do not add letter spacing,
 justify text, or request a synthetic bold weight, since those treatments can
 break the continuous borders. The font has a Regular face only.
 
+The project-owned creation tools and alphabet source use GPL-3.0-or-later; see
+[LICENSE](LICENSE). Distributed font software incorporates Arimo and retains
+SIL OFL 1.1 under [OFL.txt](OFL.txt). Preserve those font and vendor notices.
+
 ## Files
 
 - `fonts/Cubacadabra-Regular.ttf` — installable desktop font.
@@ -30,7 +34,7 @@ break the continuous borders. The font has a Regular face only.
 - `specimen/index.html` — editable local specimen.
 - `specimen/cubacadabra.svg` and `specimen/alphabet.svg` — generated samples.
 - `specimen/cubacadabra.png` and `specimen/alphabet.png` — rendered font proofs.
-- `release/Cubacadabra-0.1.0.zip` — assembled release archive.
+- `release/Cubacadabra-0.1.1.zip` — assembled release archive.
 - `sources/alphabet.py` and `scripts/build.py` — editable alphabet source and
   build generator.
 - `sources/vendor/` — Arimo source font, its license, and provenance notes.
